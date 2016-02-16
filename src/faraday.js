@@ -15,7 +15,7 @@ export default class Faraday {
   async send(method, path, params, headers) {
     switch (method) {
       case 'get':
-        if (params) path = `${urlOrPath}?${dictionaryToQuery(params)}`
+        if (params) path = `${path}?${dictionaryToQuery(params)}`
         return fetch(path, {
           method: 'GET',
           headers,

@@ -40,7 +40,9 @@ class AccountList extends Component {
     this.setState({accounts})
   }
   _onBarButtonPress() {
-    this.addListenerOn(EventEmitterInstance, 'AccountRightButtonPress', () => {
+    this.addListenerOn(EventEmitterInstance, 'AccountListLeftButtonPress', () => {
+    })
+    this.addListenerOn(EventEmitterInstance, 'AccountListRightButtonPress', () => {
       this._addAccount()
     })
   }

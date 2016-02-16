@@ -7,6 +7,7 @@ import {
   selectDictionary,
 } from './helpers'
 
+import _ from 'lodash'
 import Faraday from '../faraday'
 import Errors from './Errors'
 import Logger from './Logger'

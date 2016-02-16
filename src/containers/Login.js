@@ -72,7 +72,7 @@ class Login extends Component {
         component: AppList,
         title: t.apps,
         passProps: {navState: 'resetTo'},
-        leftButtonTitle: t.logout,
+        leftButtonTitle: t.setting,
         onLeftButtonPress: () => {
           EventEmitterInstance.emit('AppListLeftButtonPress')
         },
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   },
   signIn: {
     fontSize: 20,
-    color: '#08f',
+    color: Color.LightBlue,
     marginTop: 15,
   },
   signInDisabled: {

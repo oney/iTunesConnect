@@ -44,47 +44,58 @@ class iTunesConnect extends Component {
             component: AppList,
             title: t.apps,
             passProps: {navState: 'push'},
-            leftButtonTitle: t.logout,
+            leftButtonTitle: t.setting,
             onLeftButtonPress: () => {
               EventEmitterInstance.emit('AppListLeftButtonPress')
             },
           })
         } catch (e) {
           Alert.alert(t.signInFailed, e.message)
-          this._replaceAccount()
-          this.refs.nav.push({
-            component: Login,
-            title: t.signIn,
-            passProps: {account: mainAccount, password},
-          })
+          this._toLogin(mainAccount)
         }
       } else {
-        this._replaceAccount()
-        this.refs.nav.push({
-          component: Login,
-          title: t.signIn,
-          passProps: {account: mainAccount},
-        })
+        this._toLogin(mainAccount)
       }
     } else {
-      this._replaceAccount()
       let accounts = await AccountManager.allAccounts()
       if (accounts.length === 0) {
-        this.refs.nav.push({
-          component: Login,
-          title: t.signIn,
-        })
+        this._toLogin()
+      } else {
+        this._toAccount()
       }
     }
   }
-  _replaceAccount() {
-    this.refs.nav.replace({
+  _toAccount() {
+    this.refs.nav.push({
       component: AccountList,
       title: t.accounts,
+      leftButtonTitle: t.setting,
+      onLeftButtonPress: () => {
+        EventEmitterInstance.emit('AccountListLeftButtonPress')
+      },
       rightButtonTitle: t.add,
       onRightButtonPress: () => {
-        EventEmitterInstance.emit('AccountRightButtonPress')
+        EventEmitterInstance.emit('AccountListRightButtonPress')
       },
+    })
+  }
+  _toLogin(account, password) {
+    this.refs.nav.resetTo({
+      component: AccountList,
+      title: t.accounts,
+      leftButtonTitle: t.setting,
+      onLeftButtonPress: () => {
+        EventEmitterInstance.emit('AccountListLeftButtonPress')
+      },
+      rightButtonTitle: t.add,
+      onRightButtonPress: () => {
+        EventEmitterInstance.emit('AccountListRightButtonPress')
+      },
+    })
+    this.refs.nav.push({
+      component: Login,
+      title: t.signIn,
+      passProps: {account, password},
     })
   }
   componentWillMount() {

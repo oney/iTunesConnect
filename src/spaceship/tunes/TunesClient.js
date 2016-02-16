@@ -124,9 +124,25 @@ export default class TunesClient extends Client {
     })
     return this.handleItcResponse(await r.json())
   }
+  async stateHistory(appId) {
+    // return D.stateHistory1 // TEST: fake data
+    let r = await this.request('get', `${hostname}ra/apps/${appId}/stateHistory`, {platform: 'ios'})
+    console.log('sdfasdf', r);
+    return (await this.parseResponse(r, 'data'))['versions']
+  }
+  async stateHistoryWithVersion(appId, versionId) {
+    // versionId = '1.1.0' // TEST: fake data
+    let versions = await this.stateHistory(appId)
+    let version = _.find(versions, function(v) {
+      return v.versionString === versionId
+    })
+    return version
+  }
   async logout() {
+    // this.user = null  // TEST: fake data
     // return 200 // TEST: fake data
     let r = await this.request('get', `${hostname}wa/signOutCompleted`)
+    this.user = null
     return await r.text()
   }
   handleItcResponse(raw) {
