@@ -1,8 +1,8 @@
 'use strict';
 import Client from '../Client'
-import D from '../../data'
 import Errors from '../Errors'
 import Logger from '../Logger'
+// import D from '../../data' // TEST: fake data
 
 import _ from 'lodash'
 const hostname = "https://itunesconnect.apple.com/WebObjects/iTunesConnect.woa/"

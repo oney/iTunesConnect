@@ -47,8 +47,10 @@ import {
   AsyncStorageGetBooleanWithDefault,
 } from '../utils/helpers'
 
-const ENABLE_TOUCH_ID = 'ENABLE_TOUCH_ID'
-const ENABLE_TRACKING = 'ENABLE_TRACKING'
+import {
+  ENABLE_TOUCH_ID,
+  ENABLE_TRACKING,
+} from '../utils/constants'
 
 @autobind
 class App extends Component {

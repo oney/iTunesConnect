@@ -82,6 +82,7 @@ class StatusHistory extends Component {
     return (
       <View style={styles.container}>
         <ListView
+          style={styles.listView}
           initialListSize={10}
           pageSize={10}
           scrollRenderAheadDistance={500}
@@ -97,6 +98,9 @@ class StatusHistory extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  listView: {
+    paddingTop: 64,
   },
   separator: {
     height: 0.5,

@@ -56,6 +56,14 @@ export default new LocalizedStrings({
     canTrack: 'Approving tracking behavior',
     useMobileWeb: 'Use iTunes Connect mobile website',
 
+    updateDialogTitle: 'Update available',
+    updateDialogDescriptionPrefix: ' Description: ',
+    updateDialogMandatoryContinue: 'Continue',
+    updateDialogMandatoryUpdateMessage: 'An update is available that must be installed.',
+    updateDialogOptionalIgnore: 'Ignore',
+    updateDialogOptionalInstall: 'Install',
+    updateDialogOptionalUpdateMessage: 'An update is available. Would you like to install it?',
+
     readyForSale: "Ready for Sale",
     prepareForUpload: "Prepare for Submission",
     devRejected: "Developer Rejected",
@@ -125,6 +133,14 @@ export default new LocalizedStrings({
     useTouchID: '使用 Touch ID',
     canTrack: '同意追蹤使用行為',
     useMobileWeb: '使用 iTunes Connect 行動版網站',
+
+    updateDialogTitle: '有更新',
+    updateDialogDescriptionPrefix: ' 更新內容：',
+    updateDialogMandatoryContinue: '繼續',
+    updateDialogMandatoryUpdateMessage: '必須更新才能繼續使用',
+    updateDialogOptionalIgnore: '忽略',
+    updateDialogOptionalInstall: '安裝',
+    updateDialogOptionalUpdateMessage: '有新的版本，你想要安裝嗎？',
 
     readyForSale: "銷售準備就緒",
     prepareForUpload: "準備提交",

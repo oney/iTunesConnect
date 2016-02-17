@@ -29,13 +29,17 @@ import autobind from 'autobind-decorator'
 import TouchID from 'react-native-touch-id'
 import GAManager from './utils/GAManager'
 
+import CodePush from 'react-native-code-push'
+
 import {
   AsyncStorageGetBooleanWithDefault,
 } from './utils/helpers'
 
-const TOUCH_ID_SECONDS = 1
-const ENABLE_TOUCH_ID = 'ENABLE_TOUCH_ID'
-const ENABLE_TRACKING = 'ENABLE_TRACKING'
+import {
+  ENABLE_TOUCH_ID,
+  ENABLE_TRACKING,
+  TOUCH_ID_SECONDS,
+} from './utils/constants'
 
 @autobind
 class iTunesConnect extends Component {
@@ -45,6 +49,7 @@ class iTunesConnect extends Component {
     }, 300)
     this._onAppState()
     this._setupGAManager()
+    this._checkCodePush()
   }
   async _setupGAManager() {
     try {
@@ -167,6 +172,38 @@ class iTunesConnect extends Component {
       }
     } catch (e) {
     }
+  }
+  _checkCodePush() {
+    const options = {
+      updateDialog: {
+        appendReleaseDescription: true,
+        title: t.updateDialogTitle,
+        descriptionPrefix: t.updateDialogDescriptionPrefix,
+        mandatoryContinueButtonLabel: t.updateDialogMandatoryContinue,
+        mandatoryUpdateMessage: t.updateDialogMandatoryUpdateMessage,
+        optionalIgnoreButtonLabel: t.updateDialogOptionalIgnore,
+        optionalInstallButtonLabel: t.updateDialogOptionalInstall,
+        optionalUpdateMessage: t.updateDialogOptionalUpdateMessage,
+      },
+      installMode: CodePush.InstallMode.IMMEDIATE,
+    }
+    CodePush.sync(options, status => {
+      switch (status) {
+        case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
+          this.refs.nav.push({
+            component: Loading,
+            title: ' ',
+            navigationBarHidden: true,
+            leftButtonTitle: '',
+            onLeftButtonPress: () => {},
+          })
+          break
+        case CodePush.SyncStatus.INSTALLING_UPDATE:
+          break
+        case CodePush.SyncStatus.AWAITING_USER_ACTION:
+          break
+      }
+    })
   }
   render() {
     return (

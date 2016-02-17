@@ -5,8 +5,9 @@ import {
   Experiment as GAExperiment
 } from 'react-native-google-analytics'
 import DeviceInfo from 'react-native-device-info'
-
-const GA_ID = 'UA-73895843-1'
+import {
+  GA_ID,
+} from '../utils/constants'
 
 class GAManager {
   constructor() {
