@@ -9,6 +9,7 @@ import React, {
   ListView,
   Image,
   Alert,
+  NavigatorIOS,
 } from 'react-native'
 
 import Login from './Login'
@@ -24,6 +25,7 @@ import t from '../utils/Translation'
 import Loading from '../containers/Loading'
 import ProgressHUD from '../components/ProgressHUD'
 import autobind from 'autobind-decorator'
+import Setting from '../containers/Setting'
 
 import Spaceship, {
   Tunes,
@@ -58,24 +60,10 @@ class AppList extends Component {
   }
   _onBarButtonPress() {
     this.addListenerOn(EventEmitterInstance, 'AppListLeftButtonPress', () => {
-      this._logout()
-    })
-  }
-  async _logout() {
-    this.setState({showProgressHUD: true})
-    let r = await Tunes.client.logout()
-    this.setState({showProgressHUD: false})
-    this.props.navigator.push({
-      component: AccountList,
-      title: t.accounts,
-      /////////////// TODO: WTF this bug?
-      leftButtonTitle: ' ',
-      onLeftButtonPress: () => {},
-      ///////////////
-      rightButtonTitle: t.add,
-      onRightButtonPress: () => {
-        EventEmitterInstance.emit('AccountRightButtonPress')
-      },
+      this.props.navigator.push({
+        component: Setting,
+        title: t.setting,
+      })
     })
   }
   componentWillMount() {
@@ -98,7 +86,7 @@ class AppList extends Component {
       onRightButtonPress: () => {
         EventEmitterInstance.emit('AppRightButtonPress')
       },
-      leftButtonIcon: require('../assets/back.png'),
+      leftButtonIcon: NavigatorIOS.CustomBackIcon,
       onLeftButtonPress: () => {
         EventEmitterInstance.emit('AppLeftButtonPress')
       },

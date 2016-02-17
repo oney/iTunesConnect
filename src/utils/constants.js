@@ -1,0 +1,12 @@
+'use strict';
+const GA_ID = 'UA-73895843-1'
+const ENABLE_TOUCH_ID = 'ENABLE_TOUCH_ID'
+const ENABLE_TRACKING = 'ENABLE_TRACKING'
+const TOUCH_ID_SECONDS = 1
+
+module.exports = {
+  GA_ID,
+  ENABLE_TOUCH_ID,
+  ENABLE_TRACKING,
+  TOUCH_ID_SECONDS,
+}

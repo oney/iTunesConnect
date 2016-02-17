@@ -22,6 +22,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		BF0FBEF51C7419E8002C0B71 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0FBEF41C7419DE002C0B71 /* libRNDeviceInfo.a */; };
+		BF0FBF1E1C7483FC002C0B71 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0FBF0D1C7483EF002C0B71 /* libCodePush.a */; };
+		BF0FBF201C748411002C0B71 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0FBF1F1C748411002C0B71 /* libz.tbd */; };
+		BF0FBF431C74FBFB002C0B71 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		BF10B5621C6DB070000647D5 /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF10B5611C6DB061000647D5 /* libTouchID.a */; };
 		BF10B5691C6DB438000647D5 /* libRCTPrivacySnapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF10B5681C6DB42B000647D5 /* libRCTPrivacySnapshot.a */; };
 		BF10B5881C6DB84E000647D5 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF10B5871C6DB847000647D5 /* libRNKeychain.a */; };
@@ -117,6 +121,20 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		BF0FBEF31C7419DE002C0B71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF0FBEEF1C7419DE002C0B71 /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
+			remoteInfo = RNDeviceInfo;
+		};
+		BF0FBF0C1C7483EF002C0B71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF0FBF071C7483EE002C0B71 /* CodePush.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = CodePush;
+		};
 		BF10B5601C6DB061000647D5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BF10B5521C6DB061000647D5 /* TouchID.xcodeproj */;
@@ -183,6 +201,9 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		BF0FBEEF1C7419DE002C0B71 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
+		BF0FBF071C7483EE002C0B71 /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/CodePush.xcodeproj"; sourceTree = "<group>"; };
+		BF0FBF1F1C748411002C0B71 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		BF10B5521C6DB061000647D5 /* TouchID.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TouchID.xcodeproj; path = "../node_modules/react-native-touch-id/TouchID.xcodeproj"; sourceTree = "<group>"; };
 		BF10B5631C6DB42B000647D5 /* RCTPrivacySnapshot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPrivacySnapshot.xcodeproj; path = "../node_modules/react-native-privacy-snapshot/RCTPrivacySnapshot.xcodeproj"; sourceTree = "<group>"; };
 		BF10B5821C6DB846000647D5 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
@@ -212,6 +233,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF0FBF201C748411002C0B71 /* libz.tbd in Frameworks */,
+				BF0FBF1E1C7483FC002C0B71 /* libCodePush.a in Frameworks */,
+				BF0FBEF51C7419E8002C0B71 /* libRNDeviceInfo.a in Frameworks */,
 				BFBD302F1C708EF500FB2526 /* libART.a in Frameworks */,
 				BF8F5F7E1C6EFCE000B5342B /* libReactNativeLocalization.a in Frameworks */,
 				BF10B58F1C6E63F5000647D5 /* libRNVectorIcons.a in Frameworks */,
@@ -341,6 +365,9 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BF0FBF1F1C748411002C0B71 /* libz.tbd */,
+				BF0FBF071C7483EE002C0B71 /* CodePush.xcodeproj */,
+				BF0FBEEF1C7419DE002C0B71 /* RNDeviceInfo.xcodeproj */,
 				BFBD301A1C708EDC00FB2526 /* ART.xcodeproj */,
 				BF8F5F6A1C6EFCCD00B5342B /* ReactNativeLocalization.xcodeproj */,
 				BF10B5891C6E63B0000647D5 /* RNVectorIcons.xcodeproj */,
@@ -386,6 +413,22 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* iTunesConnect.app */,
 				00E356EE1AD99517003FC87E /* iTunesConnectTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF0FBEF01C7419DE002C0B71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF0FBEF41C7419DE002C0B71 /* libRNDeviceInfo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF0FBF081C7483EE002C0B71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF0FBF0D1C7483EF002C0B71 /* libCodePush.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -525,6 +568,10 @@
 					ProjectRef = BFBD301A1C708EDC00FB2526 /* ART.xcodeproj */;
 				},
 				{
+					ProductGroup = BF0FBF081C7483EE002C0B71 /* Products */;
+					ProjectRef = BF0FBF071C7483EE002C0B71 /* CodePush.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
@@ -571,6 +618,10 @@
 				{
 					ProductGroup = BF8F5F6B1C6EFCCD00B5342B /* Products */;
 					ProjectRef = BF8F5F6A1C6EFCCD00B5342B /* ReactNativeLocalization.xcodeproj */;
+				},
+				{
+					ProductGroup = BF0FBEF01C7419DE002C0B71 /* Products */;
+					ProjectRef = BF0FBEEF1C7419DE002C0B71 /* RNDeviceInfo.xcodeproj */;
 				},
 				{
 					ProductGroup = BF10B5831C6DB846000647D5 /* Products */;
@@ -664,6 +715,20 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		BF0FBEF41C7419DE002C0B71 /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = BF0FBEF31C7419DE002C0B71 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BF0FBF0D1C7483EF002C0B71 /* libCodePush.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCodePush.a;
+			remoteRef = BF0FBF0C1C7483EF002C0B71 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		BF10B5611C6DB061000647D5 /* libTouchID.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -728,6 +793,7 @@
 				BF10B59A1C6E643C000647D5 /* EvilIcons.ttf in Resources */,
 				BF10B59D1C6E643C000647D5 /* Ionicons.ttf in Resources */,
 				BF10B59C1C6E643C000647D5 /* Foundation.ttf in Resources */,
+				BF0FBF431C74FBFB002C0B71 /* main.jsbundle in Resources */,
 				BF10B5991C6E643C000647D5 /* Entypo.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -738,7 +804,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -746,7 +812,7 @@
 			name = "Bundle React Native code and images";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
@@ -839,6 +905,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-code-push/**",
 				);
 				INFOPLIST_FILE = iTunesConnect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -855,6 +922,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-code-push/**",
 				);
 				INFOPLIST_FILE = iTunesConnect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

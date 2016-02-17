@@ -1,7 +1,7 @@
-# Unofficial iTunes Connect App
----
+### iTunes Connect App that you actually want
 
-Unofficial iTunes Connect App that you actually want.
+[![Youtube demo](http://i.imgur.com/RFN0RQ3.jpg)](https://www.youtube.com/watch?v=1p3MoeznsAc "Video Title")
+
 ## Why
 ![iTunes Connect from App Store](http://i.imgur.com/J488ghM.jpg)
 
@@ -17,7 +17,7 @@ This app leverages iTunes Connect API of [Spaceship](https://github.com/fastlane
 
 ## How to run
 
-git clone this repository, open `iTunesConnect/ios/iTunesConnect.xcodeproj` project in Xcode, hit `Run` to install it on your device.
+Download or git clone this repository, open `iTunesConnect/ios/iTunesConnect.xcodeproj` project in Xcode, hit `Run` to install it on your device.
 
 ## Features
 
@@ -25,11 +25,13 @@ git clone this repository, open `iTunesConnect/ios/iTunesConnect.xcodeproj` proj
 - [x] See screenshots and status histories.
 - [ ] Edit categories, ratings and prices.
 - [ ] Reject, submit and release apps.
-- [ ] Edit Testflight.
+- [ ] Manage Testflight.
 
 ## Technical info
 
 This app is built by [React Native](https://github.com/facebook/react-native).
+
+For React Native developers, in order to make install app more easily for non-React-Native developers, the repository contains Objective-C codes of the Xcode project(not contains Javascript codes in `node_modules`). So, if you want to develop it, delete `node_modules` directory and run `npm install`.
 
 ## Contributing
 

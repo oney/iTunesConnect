@@ -12,20 +12,23 @@ export default class Faraday {
   response(name, data) {
 
   }
-  async send(method, path, params, headers) {
+  async send(method, path, params, headers, timeout) {
+    // timeout is not supported yet
     switch (method) {
       case 'get':
-        if (params) path = `${urlOrPath}?${dictionaryToQuery(params)}`
+        if (params) path = `${path}?${dictionaryToQuery(params)}`
         return fetch(path, {
           method: 'GET',
           headers,
+          timeout,
         })
         break
       case 'post':
         return fetch(path, {
           method: 'POST',
           headers,
-          body: JSON.stringify(params)
+          body: JSON.stringify(params),
+          timeout,
         })
         break
       default:

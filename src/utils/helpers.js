@@ -1,18 +1,30 @@
 'use strict';
 
+import React, {
+  AsyncStorage,
+} from 'react-native'
 import Color from './Color'
+
+import Spaceship, {
+  Tunes,
+} from '../spaceship'
+const AppStatus = Tunes.AppStatus
 
 export function colorForState(state) {
   switch (state) {
-    case 'waitingForReview':
-    case 'prepareForUpload':
-      return Color.AppStateYellow
+    case AppStatus.ReadyForSale:
+      return Color.AppStateGreen
       break
-    case 'rejected':
+    case AppStatus.Rejected:
+    case AppStatus.DevRejected:
+    case AppStatus.DeveloperRemovedFromSale:
+    case AppStatus.MetadataRejected:
+    case AppStatus.RemovedFromSale:
+    case AppStatus.InvalidBinary:
       return Color.AppStateRed
       break
     default:
-      return Color.AppStateGreen
+      return Color.AppStateYellow
   }
 }
 export function platformName(platformString) {
@@ -50,4 +62,8 @@ export function deviceNameToCode(device) {
     'Watch': 'watch',
   }[device]
   return v || 'Unknown'
+}
+export async function AsyncStorageGetBooleanWithDefault(key, defaultValue) {
+  const v = await AsyncStorage.getItem(key)
+  return v === null ? defaultValue : v === 'true'
 }

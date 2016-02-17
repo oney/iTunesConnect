@@ -37,6 +37,8 @@ import BuildSelect from '../components/BuildSelect'
 import TitleCell from '../components/TitleCell'
 import BuildModal from '../containers/BuildModal'
 import EventEmitterInstance from '../utils/EventEmitterInstance'
+import StatusHistory from '../containers/StatusHistory'
+import StatusRow from '../components/StatusRow'
 
 import Spaceship, {
   Tunes,
@@ -201,6 +203,16 @@ class Version extends Component {
   _renderFetching() {
     return <Loading/>
   }
+  _enterStateHistory() {
+    this.props.navigator.push({
+      component: StatusHistory,
+      title: t.statusHistory,
+      passProps: {
+        app: this.props.app,
+        version: this.props.version,
+      },
+    })
+  }
   _formHasChange() {
     const previousForm = generateForm(this.appVersion)
     return !!diff(this.state.form, previousForm)
@@ -256,6 +268,8 @@ class Version extends Component {
       <View
         style={styles.container}>
         <CellSection title={t.versionInformation} />
+        <Separator />
+        <StatusRow onPress={this._enterStateHistory} status={this.appVersion.status}/>
         <Separator />
         <LanguageSelect onPress={this._changeLanguage} language={localeCodes[this.state.currentLocale]}/>
         <Separator />
