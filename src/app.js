@@ -28,6 +28,8 @@ import t from './utils/Translation'
 import autobind from 'autobind-decorator'
 import TouchID from 'react-native-touch-id'
 import GAManager from './utils/GAManager'
+import Icon from 'react-native-vector-icons/Ionicons'
+import Color from './utils/Color'
 
 import CodePush from 'react-native-code-push'
 
@@ -50,6 +52,7 @@ class iTunesConnect extends Component {
     this._onAppState()
     this._setupGAManager()
     this._checkCodePush()
+    this._loadBackIcon()
   }
   async _setupGAManager() {
     try {
@@ -123,6 +126,11 @@ class iTunesConnect extends Component {
       component: Login,
       title: t.signIn,
       passProps: {account, password},
+    })
+  }
+  _loadBackIcon() {
+    Icon.getImageSource('chevron-left', 25, Color.LightBlue).then(source => {
+      NavigatorIOS.CustomBackIcon = source
     })
   }
   componentWillMount() {

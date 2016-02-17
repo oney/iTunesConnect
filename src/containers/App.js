@@ -9,6 +9,7 @@ import React, {
   Navigator,
   InteractionManager,
   Alert,
+  NavigatorIOS,
 } from 'react-native'
 
 import moment from 'moment'
@@ -217,7 +218,7 @@ class App extends Component {
       onRightButtonPress: () => {
         EventEmitterInstance.emit('VersionSetRightButtonPress')
       },
-      leftButtonIcon: require('../assets/back.png'),
+      leftButtonIcon: NavigatorIOS.CustomBackIcon,
       onLeftButtonPress: () => {
         EventEmitterInstance.emit('VersionSetLeftButtonPress')
       },

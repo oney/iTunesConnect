@@ -9,6 +9,7 @@ import React, {
   ListView,
   Image,
   Alert,
+  NavigatorIOS,
 } from 'react-native'
 
 import Login from './Login'
@@ -85,7 +86,7 @@ class AppList extends Component {
       onRightButtonPress: () => {
         EventEmitterInstance.emit('AppRightButtonPress')
       },
-      leftButtonIcon: require('../assets/back.png'),
+      leftButtonIcon: NavigatorIOS.CustomBackIcon,
       onLeftButtonPress: () => {
         EventEmitterInstance.emit('AppLeftButtonPress')
       },
