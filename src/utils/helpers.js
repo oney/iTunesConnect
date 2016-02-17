@@ -1,5 +1,8 @@
 'use strict';
 
+import React, {
+  AsyncStorage,
+} from 'react-native'
 import Color from './Color'
 
 import Spaceship, {
@@ -59,4 +62,8 @@ export function deviceNameToCode(device) {
     'Watch': 'watch',
   }[device]
   return v || 'Unknown'
+}
+export async function AsyncStorageGetBooleanWithDefault(key, defaultValue) {
+  const v = await AsyncStorage.getItem(key)
+  return v === null ? defaultValue : v === 'true'
 }

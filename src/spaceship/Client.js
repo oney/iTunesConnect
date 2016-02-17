@@ -60,13 +60,13 @@ export default class Client {
   csrfTokens() {
     return this.csrfTokensVar || {}
   }
-  async request(method, urlOrPath = null, params = null, headers = {}) {
+  async request(method, urlOrPath = null, params = null, headers = {}, timeout = 30000) {
     Object.assign(headers, this.csrfTokens())
     Object.assign(headers, { 'User-Agent': USER_AGENT })
 
     this.logRequest(method, urlOrPath, params)
 
-    let response = await this.sendRequest(method, urlOrPath, params, headers)
+    let response = await this.sendRequest(method, urlOrPath, params, headers, timeout)
 
     this.logResponse(method, urlOrPath, response)
 
@@ -86,9 +86,9 @@ export default class Client {
   async logResponse(method, url, response) {
     Logger.log(`${method.toUpperCase()}: ${url}: ${response}`)
   }
-  async sendRequest(method, urlOrPath, params, headers) {
+  async sendRequest(method, urlOrPath, params, headers, timeout) {
     // TODO: Not support with_retry and check 302 Found error
-    let response = await this.client.send(method, urlOrPath, params, headers)
+    let response = await this.client.send(method, urlOrPath, params, headers, timeout)
     return response
   }
   async parseResponse(response, expectedKey = null) {

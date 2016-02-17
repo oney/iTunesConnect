@@ -127,7 +127,6 @@ export default class TunesClient extends Client {
   async stateHistory(appId) {
     // return D.stateHistory1 // TEST: fake data
     let r = await this.request('get', `${hostname}ra/apps/${appId}/stateHistory`, {platform: 'ios'})
-    console.log('sdfasdf', r);
     return (await this.parseResponse(r, 'data'))['versions']
   }
   async stateHistoryWithVersion(appId, versionId) {
@@ -139,10 +138,9 @@ export default class TunesClient extends Client {
     return version
   }
   async logout() {
-    // this.user = null  // TEST: fake data
+    this.user = null
     // return 200 // TEST: fake data
     let r = await this.request('get', `${hostname}wa/signOutCompleted`)
-    this.user = null
     return await r.text()
   }
   handleItcResponse(raw) {

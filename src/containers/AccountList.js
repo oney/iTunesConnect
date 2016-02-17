@@ -18,6 +18,7 @@ import EnterArrow from '../components/EnterArrow'
 import autobind from 'autobind-decorator'
 import t from '../utils/Translation'
 import EventEmitterInstance from '../utils/EventEmitterInstance'
+import Setting from '../containers/Setting'
 
 @autobind
 class AccountList extends Component {
@@ -41,6 +42,10 @@ class AccountList extends Component {
   }
   _onBarButtonPress() {
     this.addListenerOn(EventEmitterInstance, 'AccountListLeftButtonPress', () => {
+      this.props.navigator.push({
+        component: Setting,
+        title: t.setting,
+      })
     })
     this.addListenerOn(EventEmitterInstance, 'AccountListRightButtonPress', () => {
       this._addAccount()

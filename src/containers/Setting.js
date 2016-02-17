@@ -10,6 +10,8 @@ import React, {
   InteractionManager,
   Alert,
   Switch,
+  TouchableHighlight,
+  AsyncStorage,
 } from 'react-native'
 
 import moment from 'moment'
@@ -30,11 +32,10 @@ import TextField from '../components/TextField'
 import t from '../utils/Translation'
 import localeCodes from '../utils/localeCodes'
 import Color from '../utils/Color'
-import LocaleCodeModal from '../containers/LocaleCodeModal'
-import DisplayCell from '../components/DisplayCell'
+import MobileWeb from '../containers/MobileWeb'
+import EnterArrow from '../components/EnterArrow'
 import AccountList from '../containers/AccountList'
 import EventEmitterInstance from '../utils/EventEmitterInstance'
-import KeyboardSpacer from 'react-native-keyboard-spacer'
 import Button from 'react-native-button'
 
 import Spaceship, {
@@ -42,40 +43,62 @@ import Spaceship, {
   Errors,
 } from '../spaceship'
 
+import {
+  AsyncStorageGetBooleanWithDefault,
+} from '../utils/helpers'
+
+const ENABLE_TOUCH_ID = 'ENABLE_TOUCH_ID'
+const ENABLE_TRACKING = 'ENABLE_TRACKING'
+
 @autobind
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      touchID: true,
+      status: 'loading',
     }
   }
-  componentDidMount() {
-    console.log('sTunes', Tunes.client);
+  async componentDidMount() {
+    try {
+      let [touchID, canTrack] = await Promise.all([
+        AsyncStorageGetBooleanWithDefault(ENABLE_TOUCH_ID, true),
+        AsyncStorageGetBooleanWithDefault(ENABLE_TRACKING, true),
+      ])
+      this.setState({status: 'ideal', touchID, canTrack})
+    } catch (error) {
+      Alert.alert(error.message)
+    }
   }
   async _signOut() {
     this.setState({showProgressHUD: true})
-    let r = await Tunes.client.logout()
-    this.setState({showProgressHUD: false})
-    this.props.navigator.resetTo({
-      component: AccountList,
-      title: t.accounts,
-      leftButtonTitle: t.setting,
-      onLeftButtonPress: () => {
-        EventEmitterInstance.emit('AccountListLeftButtonPress')
-      },
-      rightButtonTitle: t.add,
-      onRightButtonPress: () => {
-        EventEmitterInstance.emit('AccountListRightButtonPress')
-      },
-    })
+    try {
+      let r = await Tunes.client.logout()
+    } catch (e) {
+
+    } finally {
+      this.setState({showProgressHUD: false})
+      this.props.navigator.resetTo({
+        component: AccountList,
+        title: t.accounts,
+        leftButtonTitle: t.setting,
+        onLeftButtonPress: () => {
+          EventEmitterInstance.emit('AccountListLeftButtonPress')
+        },
+        rightButtonTitle: t.add,
+        onRightButtonPress: () => {
+          EventEmitterInstance.emit('AccountListRightButtonPress')
+        },
+      })
+    }
   }
-  _onSwitchValueChange(name, value) {
+  async _onSwitchValueChange(name, value) {
+    let oldValue = this.state[name]
     this.setState({[name]: value})
-    if (name === 'touchID') {
-
-    } else if (name === 'canTrack') {
-
+    let key = {touchID: ENABLE_TOUCH_ID, canTrack: ENABLE_TRACKING}[name]
+    try {
+      await AsyncStorage.setItem(key, value ? 'true' : 'false')
+    } catch (error) {
+      this.setState({[name]: oldValue})
     }
   }
   _textRow(title, value, key) {
@@ -101,20 +124,48 @@ class App extends Component {
         <View style={styles.rightSection}>
           <Switch
             onValueChange={value => this._onSwitchValueChange(name, value)}
-            value={value} />
+            value={!!value} />
         </View>
       </View>
     )
   }
+  _useMobileWeb() {
+    this.props.navigator.push({
+      component: MobileWeb,
+    })
+  }
+  _renderUseMobileWeb() {
+    return (
+      <TouchableHighlight
+        underlayColor='transparent'
+        onPress={this._useMobileWeb}
+        >
+        <View style={[styles.row, {
+          paddingRight: 0,
+        }]}>
+          <View style={styles.leftSection}>
+            <Text style={styles.useMobileWeb}>{t.useMobileWeb}</Text>
+          </View>
+          <View style={styles.flex}/>
+          <EnterArrow/>
+        </View>
+      </TouchableHighlight>
+    )
+  }
+  _tunesIsLogin() {
+    return Tunes.client && Tunes.client.user
+  }
   render() {
-    const {app, form} = this.state
+    if (this.state.status === 'loading') {
+      return <View style={styles.container} />
+    }
 
     return (
       <View style={styles.container}>
         <ScrollView
           automaticallyAdjustContentInsets={false}
           style={styles.scrollView}>
-          { Tunes.client.user && [
+          { this._tunesIsLogin() && [
             this._textRow(t.appleID, Tunes.client.user, 'appleID'),
             (<Separator key='appleIDSeparator' padding={20} height={1} />)
           ]}
@@ -122,8 +173,9 @@ class App extends Component {
           <Separator padding={20} height={1} />
           {this._switchRow('canTrack', t.canTrack, this.state.canTrack)}
           <Separator padding={20} height={1} />
-
-          { Tunes.client.user &&
+          {this._renderUseMobileWeb()}
+          <Separator padding={20} height={1} />
+          { this._tunesIsLogin() &&
             <Button style={styles.signOut} onPress={this._signOut}>
               {t.signOut}
             </Button>
@@ -173,6 +225,10 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: Color.LightBlue,
     marginTop: 15,
+  },
+  useMobileWeb: {
+    fontSize: 14,
+    color: Color.LightBlue,
   },
 })
 

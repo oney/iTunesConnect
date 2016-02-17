@@ -7,6 +7,7 @@ import React, {
   View,
   Alert,
   NavigatorIOS,
+  AppState,
 } from 'react-native'
 
 import ExNavigator from '@exponent/react-native-navigator'
@@ -25,13 +26,34 @@ import AccountManager from './utils/AccountManager'
 import EventEmitterInstance from './utils/EventEmitterInstance'
 import t from './utils/Translation'
 import autobind from 'autobind-decorator'
+import TouchID from 'react-native-touch-id'
+import GAManager from './utils/GAManager'
+
+import {
+  AsyncStorageGetBooleanWithDefault,
+} from './utils/helpers'
+
+const TOUCH_ID_SECONDS = 1
+const ENABLE_TOUCH_ID = 'ENABLE_TOUCH_ID'
+const ENABLE_TRACKING = 'ENABLE_TRACKING'
 
 @autobind
 class iTunesConnect extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     setTimeout(() => {
       this._determineAccount()
     }, 300)
+    this._onAppState()
+    this._setupGAManager()
+  }
+  async _setupGAManager() {
+    try {
+      let enabled = await AsyncStorageGetBooleanWithDefault(ENABLE_TRACKING, true)
+      if (enabled) {
+        GAManager.sendScreenView('active')
+      }
+    } catch (e) {
+    }
   }
   async _determineAccount() {
     let mainAccount = await AccountManager.mainAccount()
@@ -103,6 +125,48 @@ class iTunesConnect extends Component {
   }
   componentWillUnmount() {
     PrivacySnapshot.enabled(false)
+  }
+  _onAppState() {
+    AppState.addEventListener('change', (appState) => {
+      console.log('currentAppState', appState)
+      switch (appState) {
+        case 'active':
+          this._onAppStateActive()
+          break
+        case 'background':
+          this.eneterBackgroundAt = new Date()
+          break
+        default:
+      }
+    })
+  }
+  _onAppStateActive() {
+    GAManager.sendScreenView('active')
+    if (this.eneterBackgroundAt) {
+      let duration = new Date() - this.eneterBackgroundAt
+      if (duration > TOUCH_ID_SECONDS * 1000) {
+        // this._useTouchID()
+      }
+    }
+  }
+  async _useTouchID() {
+    try {
+      let v = await AsyncStorageGetBooleanWithDefault(ENABLE_TOUCH_ID, true)
+      if (v === false) {
+        return
+      }
+    } catch (e) {
+    }
+    try {
+      let isSupported = await TouchID.isSupported()
+      if (isSupported) {
+        try {
+          await TouchID.authenticate('For using stored accounts')
+        } catch (e) {
+        }
+      }
+    } catch (e) {
+    }
   }
   render() {
     return (
