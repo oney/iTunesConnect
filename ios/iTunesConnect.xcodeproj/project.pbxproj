@@ -25,6 +25,7 @@
 		BF0FBEF51C7419E8002C0B71 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0FBEF41C7419DE002C0B71 /* libRNDeviceInfo.a */; };
 		BF0FBF1E1C7483FC002C0B71 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0FBF0D1C7483EF002C0B71 /* libCodePush.a */; };
 		BF0FBF201C748411002C0B71 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0FBF1F1C748411002C0B71 /* libz.tbd */; };
+		BF0FBF431C74FBFB002C0B71 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		BF10B5621C6DB070000647D5 /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF10B5611C6DB061000647D5 /* libTouchID.a */; };
 		BF10B5691C6DB438000647D5 /* libRCTPrivacySnapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF10B5681C6DB42B000647D5 /* libRCTPrivacySnapshot.a */; };
 		BF10B5881C6DB84E000647D5 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF10B5871C6DB847000647D5 /* libRNKeychain.a */; };
@@ -792,6 +793,7 @@
 				BF10B59A1C6E643C000647D5 /* EvilIcons.ttf in Resources */,
 				BF10B59D1C6E643C000647D5 /* Ionicons.ttf in Resources */,
 				BF10B59C1C6E643C000647D5 /* Foundation.ttf in Resources */,
+				BF0FBF431C74FBFB002C0B71 /* main.jsbundle in Resources */,
 				BF10B5991C6E643C000647D5 /* Entypo.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -802,7 +804,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -810,7 +812,7 @@
 			name = "Bundle React Native code and images";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
