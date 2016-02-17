@@ -1,7 +1,7 @@
-# Unofficial iTunes Connect App
----
+### iTunes Connect App that you actually want
 
-Unofficial iTunes Connect App that you actually want.
+[![Youtube demo](http://i.imgur.com/RFN0RQ3.jpg)](https://www.youtube.com/watch?v=1p3MoeznsAc "Video Title")
+
 ## Why
 ![iTunes Connect from App Store](http://i.imgur.com/J488ghM.jpg)
 
