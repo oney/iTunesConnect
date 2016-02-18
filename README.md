@@ -2,6 +2,8 @@
 
 [![Youtube demo](http://i.imgur.com/RFN0RQ3.jpg)](https://www.youtube.com/watch?v=1p3MoeznsAc "Video Title")
 
+### [繁中](README-zh-Hant.md) | [簡中](README-zh-Hans.md)
+
 ## Why
 ![iTunes Connect from App Store](http://i.imgur.com/J488ghM.jpg)
 
