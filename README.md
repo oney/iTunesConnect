@@ -2,6 +2,12 @@
 
 [![Youtube demo](http://i.imgur.com/RFN0RQ3.jpg)](https://www.youtube.com/watch?v=1p3MoeznsAc "Video Title")
 
+## Try it
+
+Download [Exponent iOS App](https://itunes.com/apps/exponent), and enter `exp.host/@one/iTunesConnect` on the app.
+
+![Exponent](http://i.imgur.com/MEtBVxH.jpg)
+
 ### [繁中](README-zh-Hant.md) | [簡中](README-zh-Hans.md)
 
 ## Why
